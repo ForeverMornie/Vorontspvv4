@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int countSequences(int n) {
+    int mod = 12345; 	//обмеження значень послідовності
+    int a = 1, b = 2, c = 4, i;  //початкові значення для обчислення послідовності
+
+    if (n == 1)
+        return 2; //для n=1
+    else if (n == 2) //для n=2
+        return 3;
+
+    for (i = 3; i <= n; i++) {
+        int temp = (a + b + c) % mod; //обчислення наступнлшл числа у послідовності
+        a = b; //переміщення значень для обчислення наступного числа
+        b = c;
+        c = temp;
+    }
+
+    return c;
+}
+
+int main() {
+    int n;
+    printf("Введіть довжину послідовності (n): ");
+    scanf("%d", &n);
+
+    int result = countSequences(n);
+    printf("Кількість шуканих послідовностей: %d\n", result);
+
+    return 0;
+}
